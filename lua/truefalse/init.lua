@@ -23,8 +23,8 @@ end
 vim.api.nvim_create_user_command(
     'TFInvert',
     truefalseinvert,
-    {bang = true, desc = 'a new command to do the thing'}
+    {bang = true, desc = 'Invert boolean at cursor.'}
 )
 
 -- Keymaps
-vim.keymap.set('n', '<Leader>ff', truefalseinvert, {desc = 'Invert boolean. "[f]lip [f]lop"', remap = false})
+vim.keymap.set('n', '<Leader>ff', truefalseinvert, {desc = 'Invert boolean at cursor. "[f]lip [f]lop"', remap = false})
