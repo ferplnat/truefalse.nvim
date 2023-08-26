@@ -7,7 +7,6 @@ local function truefalseinvert()
     local currentWord = vim.call('expand', '<cword>')
     local replaceWord
 
-    -- TODO: preserve case when replacing
     if string.lower(currentWord) == 'true' then
         replaceWord = 'false'
     elseif string.lower(currentWord) == 'false' then
@@ -16,11 +15,12 @@ local function truefalseinvert()
         return
     end
 
-    -- true
-    -- TruE
-    -- false
-    -- False
-    print(replaceWord)
+    -- Preserve first letter case if applicable
+    if currentWord == currentWord:gsub("^%l", string.upper) then
+        replaceWord = replaceWord:gsub("^%l", string.upper)
+    end
+
+    vim.cmd("normal! \"_ciw" .. replaceWord)
 end
 
 -- Commands
@@ -31,7 +31,7 @@ vim.api.nvim_create_user_command(
 )
 
 -- Keymaps
-vim.keymap.set('n', '<Leader>ff', ':TFInvert<Return>', {desc = 'Flip flop shit.', remap = false})
+vim.keymap.set('n', '<Leader>ff', truefalseinvert, {desc = 'Invert boolean. "[f]lip [f]lop"', remap = false})
 
 -- Return the functions that should be exposed
 return {
