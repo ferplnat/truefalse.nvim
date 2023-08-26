@@ -8,11 +8,3 @@
 " `lua.lua` file, then an `init.lua` file in that directory. In this case, it
 " will find the `lua\myluamodule\init.lua` file.
 lua truefalse = require("truefalse")
-
-" Common convention in the Neovim plugin community is to require the module
-" and use it all at once:
-lua require('truefalse').setup({})
-
-" Once the `require` statement completes, the `local_lua_function` Lua
-" function defined in `lua\myluamodule\init.lua` will be available when
-" qualified with the module name.
