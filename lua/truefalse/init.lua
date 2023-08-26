@@ -1,7 +1,3 @@
--- Setup function
-local function setup(parameters)
-end
-
 -- Functionality functions
 local function truefalseinvert()
     local currentWord = vim.call('expand', '<cword>')
@@ -32,8 +28,3 @@ vim.api.nvim_create_user_command(
 
 -- Keymaps
 vim.keymap.set('n', '<Leader>ff', truefalseinvert, {desc = 'Invert boolean. "[f]lip [f]lop"', remap = false})
-
--- Return the functions that should be exposed
-return {
-    setup = setup,
-}
