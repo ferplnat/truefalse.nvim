@@ -11,8 +11,12 @@ local function truefalseinvert()
         return
     end
 
-    -- Preserve first letter case if applicable
-    if currentWord == currentWord:gsub("^%l", string.upper) then
+    -- Only supports all caps or first letter uppercase. Other situations shouldn't matter.
+    if currentWord == string.upper(currentWord) then
+        -- Preserve ALL CAPS if applicable
+        replaceWord = string.upper(replaceWord)
+    elseif currentWord == currentWord:gsub("^%l", string.upper) then
+        -- Preserve first letter case if applicable
         replaceWord = replaceWord:gsub("^%l", string.upper)
     end
 
