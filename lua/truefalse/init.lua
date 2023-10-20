@@ -20,15 +20,17 @@ local function truefalseinvert()
         replaceWord = replaceWord:gsub("^%l", string.upper)
     end
 
+    local cursorPosition = vim.fn.getpos('.')
     vim.cmd("normal! \"_ciw" .. replaceWord)
+    vim.fn.setpos('.', cursorPosition)
 end
 
 -- Commands
 vim.api.nvim_create_user_command(
     'TFInvert',
     truefalseinvert,
-    {bang = true, desc = 'Invert boolean at cursor.'}
+    { bang = true, desc = 'Invert boolean at cursor.' }
 )
 
 -- Keymaps
-vim.keymap.set('n', '<Leader>ff', truefalseinvert, {desc = 'Invert boolean at cursor. "[f]lip [f]lop"', remap = false})
+vim.keymap.set('n', '<Leader>ff', truefalseinvert, { desc = 'Invert boolean at cursor. "[f]lip [f]lop"', remap = false })
