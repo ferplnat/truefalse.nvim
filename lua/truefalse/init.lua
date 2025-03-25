@@ -1,5 +1,20 @@
 -- Functionality functions
-local function truefalseinvert()
+
+local M = {}
+
+local default_config = {
+    keymap = "<Leader>ff",
+}
+
+M.setup = function(config)
+    config = config or {}
+    config = vim.tbl_deep_extend('force', default_config, config)
+
+    -- Keymaps
+    vim.keymap.set('n', config.keymap, M.invert, { desc = 'Invert boolean at cursor. "[f]lip [f]lop"', remap = false })
+end
+
+M.invert = function()
     local currentWord = vim.call('expand', '<cword>')
     local replaceWord
 
@@ -28,9 +43,8 @@ end
 -- Commands
 vim.api.nvim_create_user_command(
     'TFInvert',
-    truefalseinvert,
+    M.invert,
     { bang = true, desc = 'Invert boolean at cursor.' }
 )
 
--- Keymaps
-vim.keymap.set('n', '<Leader>ff', truefalseinvert, { desc = 'Invert boolean at cursor. "[f]lip [f]lop"', remap = false })
+return M
