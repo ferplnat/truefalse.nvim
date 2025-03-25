@@ -6,7 +6,7 @@ the anatomy of a Neovim plugin.
 
 ```lua
 require('truefalse').setup({
-    keymap = '<Leader>ff' // Default, just a config example.
+    keymap = '<Leader>ff' -- Default, just a config example.
 })
 ```
 
